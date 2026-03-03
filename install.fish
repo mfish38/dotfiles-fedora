@@ -70,8 +70,14 @@ curl -fsSL https://bun.com/install | bash
 # Fonts
 install_font https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/Gohu.zip
 
-# # Docker
-# pac docker docker-compose
+# Docker
+if not test -f /etc/yum.repos.d/docker-ce.repo
+    sudo dnf config-manager addrepo --from-repofile https://download.docker.com/linux/fedora/docker-ce.repo
+end
+
+install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+sudo systemctl enable --now docker
 
 # VSCode
 if not test -f /etc/yum.repos.d/vscode.repo
