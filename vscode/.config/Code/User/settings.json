@@ -110,6 +110,7 @@
   "git.confirmSync": false,
   "git.replaceTagsWhenPull": true,
   "leap.whiteSpacesOnlyMatchNewLine": true,
+  "nuxtr.vueFiles.firstTag": "script",
   "terminal.integrated.scrollback": 10000,
   "vim.normalModeKeyBindingsNonRecursive": [
     {
@@ -185,13 +186,10 @@
     "[Matchalk]": {
       "diffEditor.insertedTextBorder": "default",
       "diffEditor.removedTextBorder": "default",
-      // "editor.foreground": "#D1DED3"
       "editor.foreground": "#c7d4c9",
     },
   },
   "workbench.colorTheme": "Matchalk",
   "workbench.tree.indent": 20,
   "workbench.tree.renderIndentGuides": "always",
-  "security.workspace.trust.untrustedFiles": "open",
-  "github.copilot.nextEditSuggestions.enabled": true,
 }
