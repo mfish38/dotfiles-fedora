@@ -1,0 +1,8 @@
+[user]
+    name = mfish38
+    email = markdfisher38@gmail.com
+    signingkey = 5C50745C8732A7E2
+[commit]
+    gpgsign = true
+[tag]
+    gpgSign = true
