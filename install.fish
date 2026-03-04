@@ -4,12 +4,12 @@ function install
     sudo dnf install -y $argv
 end
 
-function dotstow
-    stow --adopt --dir=$HOME/dotfiles $argv
+function stow_home
+    stow --adopt --dir=$HOME/dotfiles/stow-home --target=$HOME $argv
 end
 
-function etcstow
-    sudo stow --adopt --dir=$HOME/dotfiles/etc --target=/etc/$argv $argv
+function stow_etc
+    sudo stow --adopt --dir=$HOME/dotfiles/stow-etc --target=/etc/$argv $argv
 end
 
 function install_font
@@ -44,7 +44,7 @@ end
 # Dotfile Dependencies
 install stow git
 
-dotstow git
+stow_home git
 
 if not type -q fisher
     curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source; and fisher install jorgebucaran/fisher
@@ -52,8 +52,8 @@ end
 
 # Firefox
 set FIREFOX_PROFILE (find ~/.config/mozilla/firefox -maxdepth 1 -type d -name "*.default-release" | head -n 1)
-stow --adopt --dir=$HOME/dotfiles --target=$FIREFOX_PROFILE firefox
-etcstow firefox
+stow --adopt --dir=$HOME/dotfiles/stow-home --target=$FIREFOX_PROFILE firefox
+stow_etc firefox
 
 # Discord
 flatpak install -y flathub com.discordapp.Discord
@@ -116,4 +116,4 @@ set extensions \
 
 install_vscode_extensions $extensions
 
-dotstow vscode
+stow_home vscode
