@@ -1,5 +1,7 @@
 #!/usr/bin/env fish
 
+set SCRIPT_DIR (dirname (status --current-filename))
+
 function install
     sudo dnf install -y $argv
 end
@@ -78,6 +80,9 @@ end
 install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 sudo systemctl enable --now docker
+
+# Docker Services
+sudo docker compose -f $SCRIPT_DIR/docker/docker-compose.yaml up -d
 
 # VSCode
 if not test -f /etc/yum.repos.d/vscode.repo

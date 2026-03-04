@@ -1,0 +1,26 @@
+services:
+  redis:
+    image: redis:8
+    command: redis-server --requirepass local_dev_only
+    restart: always
+    ports:
+      - 127.0.0.1:6379:6379
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_PASSWORD: local_dev_only
+    restart: always
+    ports:
+      - 127.0.0.1:5432:5432
+    volumes:
+      - local_db:/var/lib/postgresql/data/
+  adminer:
+    image: adminer:latest
+    depends_on:
+      - postgres
+    environment:
+      ADMINER_DEFAULT_SERVER: postgres
+    ports:
+      - 127.0.0.1:8080:8080
+volumes:
+  local_db:
