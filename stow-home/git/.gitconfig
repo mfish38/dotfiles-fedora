@@ -1,7 +1,7 @@
 [user]
     name = mfish38
     email = markdfisher38@gmail.com
-    signingkey = 5C50745C8732A7E2
+    signingkey = FDB3ECBD3D4BB95F
 [commit]
     gpgsign = true
 [tag]
