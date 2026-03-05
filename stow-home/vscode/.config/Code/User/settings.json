@@ -52,6 +52,7 @@
     "vueuse",
   ],
   "dbmlERDPreviewer.scrollDirection": "up-in",
+  "diffEditor.ignoreTrimWhitespace": true,
   "editor.acceptSuggestionOnCommitCharacter": false,
   "editor.autoClosingBrackets": "never",
   "editor.autoClosingQuotes": "never",
@@ -111,6 +112,7 @@
   "git.replaceTagsWhenPull": true,
   "leap.whiteSpacesOnlyMatchNewLine": true,
   "nuxtr.vueFiles.firstTag": "script",
+  "terminal.integrated.defaultProfile.linux": "fish",
   "terminal.integrated.scrollback": 10000,
   "vim.normalModeKeyBindingsNonRecursive": [
     {
