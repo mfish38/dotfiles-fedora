@@ -38,7 +38,6 @@ function install_vscode_extensions
             continue
         end
 
-        echo "Installing $extension..."
         code --install-extension $extension
     end
 end
@@ -54,8 +53,8 @@ end
 
 # Firefox
 set FIREFOX_PROFILE (find ~/.config/mozilla/firefox -maxdepth 1 -type d -name "*.default-release" | head -n 1)
-stow --adopt --dir=$HOME/dotfiles/stow-home --target=$FIREFOX_PROFILE firefox
-stow_etc firefox
+and stow --adopt --dir=$HOME/dotfiles/stow-home --target=$FIREFOX_PROFILE firefox
+and stow_etc firefox
 
 # Discord
 flatpak install -y flathub com.discordapp.Discord
@@ -83,6 +82,10 @@ sudo systemctl enable --now docker
 
 # Docker Services
 sudo docker compose -f $SCRIPT_DIR/docker/docker-compose.yaml up -d
+
+# Virtual Machines
+install @virtualization
+and sudo systemctl enable --now libvirtd
 
 # VSCode
 if not test -f /etc/yum.repos.d/vscode.repo
