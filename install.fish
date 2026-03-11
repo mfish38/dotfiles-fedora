@@ -77,8 +77,7 @@ if not test -f /etc/yum.repos.d/docker-ce.repo
 end
 
 install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-
-sudo systemctl enable --now docker
+and sudo systemctl enable --now docker
 
 # Docker Services
 sudo docker compose -f $SCRIPT_DIR/docker/docker-compose.yaml up -d
