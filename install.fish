@@ -14,6 +14,15 @@ function stow_etc
     sudo stow --adopt --dir=$HOME/dotfiles/stow-etc --target=/etc/$argv $argv
 end
 
+function ensure_repo
+    set -l repo_url $argv[1]
+    set -l repo_file (basename $repo_url)
+
+    if not test -f /etc/yum.repos.d/$repo_file
+        sudo dnf config-manager addrepo --from-repofile=$repo_url
+    end
+end
+
 function install_font
     set -l font_url $argv
     set -l font_dir ~/.local/share/fonts
@@ -51,6 +60,10 @@ if not type -q fisher
     curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source; and fisher install jorgebucaran/fisher
 end
 
+# Github CLI
+ensure_repo https://cli.github.com/packages/rpm/gh-cli.repo
+install gh --repo gh-cli
+
 # Firefox
 set FIREFOX_PROFILE (find ~/.config/mozilla/firefox -maxdepth 1 -type d -name "*.default-release" | head -n 1)
 and stow --adopt --dir=$HOME/dotfiles/stow-home --target=$FIREFOX_PROFILE firefox
@@ -72,10 +85,7 @@ curl -fsSL https://bun.com/install | bash
 install_font https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/Gohu.zip
 
 # Docker
-if not test -f /etc/yum.repos.d/docker-ce.repo
-    sudo dnf config-manager addrepo --from-repofile https://download.docker.com/linux/fedora/docker-ce.repo
-end
-
+ensure_repo https://download.docker.com/linux/fedora/docker-ce.repo
 install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 and sudo systemctl enable --now docker
 
