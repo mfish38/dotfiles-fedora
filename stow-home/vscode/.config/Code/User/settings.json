@@ -26,8 +26,10 @@
   "catppuccin.italicComments": false,
   "catppuccin.italicKeywords": false,
   "cSpell.userWords": [
+    "agentic",
     "defu",
     "Dont",
+    "gpgsign",
     "ilike",
     "lucide",
     "msal",
@@ -48,6 +50,7 @@
     "rryellow",
     "sfdark",
     "sfnuxtlayer",
+    "signingkey",
     "Slideover",
     "vueuse",
   ],
